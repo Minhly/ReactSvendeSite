@@ -1,14 +1,14 @@
 import { Button, Grid, Typography } from "@mui/material";
 
-const Admin = () => {
+const Home = () => {
   return (
     <Grid item md="12">
       <Typography variant="h3" align="center">
-        Adminx
+        Homexx
       </Typography>
-      <Button variant="outlined">Hello world!</Button>
+      <Button variant="outlined">Hello world!zzzzzz</Button>
     </Grid>
   );
 }
 
-export default Admin;
+export default Home;
