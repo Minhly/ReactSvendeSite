@@ -1,26 +1,22 @@
 import "./App.css";
 import { Grid } from "@mui/material";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Admin from "./pages/admin";
-import TopHeader from "./layout/TopHeader";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import TopHeader from "./layout/topHeader";
 import Home from "./pages/home";
+import Footy from './layout/footerx';
+import Login from "./pages/login";
 
-const App = () => {
+function App() {
   return (
     <BrowserRouter>
-      <Grid container>
-      <TopHeader/>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/pages/admin">
-            <Admin />
-          </Route>
-        </Switch>
-      </Grid>
+      <TopHeader />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/pages/login" element={<Login />} />
+      </Routes>
+      <Footy/>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
