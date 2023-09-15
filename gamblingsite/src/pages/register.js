@@ -11,18 +11,21 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, Navigate, Route, redirect, useNavigate } from "react-router-dom";
 
-function Login() {
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+function Register() {
   const navigate = useNavigate();
   const [data, setData] = useState({
-    email: "",
+    firstname: "",
+    lastmame: "",
     password: "",
+    email: "",
+    phonenumber: "",
+    address: "",
+    postalcode: "",
+    password: "",
+    username: "",
   });
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     const value = e.target.value;
     setData({
       ...data,
@@ -34,8 +37,15 @@ function Login() {
     e.preventDefault();
 
     const userData = {
-      email: data.email,
+      firstname: data.firstname,
+      lastmame: data.lastmame,
       password: data.password,
+      email: data.email,
+      phonenumber: data.phonenumber,
+      address: data.address,
+      postalcode: data.postalcode,
+      password: data.password,
+      username: data.username
     };
 
     const config = {
@@ -45,12 +55,12 @@ function Login() {
     };
 
     /*
-    const url = "https://deep-wealthy-roughy.ngrok-free.app/user/getusers";
-    
-    axios.get(url, config)
-    .then(res=> console.log(res))
-    .catch(err=> console.log(err))
-      */
+      const url = "https://deep-wealthy-roughy.ngrok-free.app/user/getusers";
+      
+      axios.get(url, config)
+      .then(res=> console.log(res))
+      .catch(err=> console.log(err))
+        */
 
     axios
       .post(
@@ -61,11 +71,9 @@ function Login() {
       .then((response) => {
         if (response.status == 200) {
           navigate("/pages/admin");
-        }
-        else if (response.status == 423){
-            navigate("/");
-        }
-        else {
+        } else if (response.status == 423) {
+          navigate("/");
+        } else {
           navigate("/");
         }
       });
@@ -84,7 +92,7 @@ function Login() {
               fontWeight: "bold",
             }}
           >
-            Login
+            Create Account
           </Typography>
           <Box
             sx={{
@@ -103,9 +111,19 @@ function Login() {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
+                name="username"
+                label="Brugernavn"
+                onChange={handleChange}
+                id="username"
+                helperText= {"Field is empty"}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="firstname"
+                label="Fornavn"
+                name="firstname"
                 onChange={handleChange}
                 autoFocus
               />
@@ -113,31 +131,66 @@ function Login() {
                 margin="normal"
                 required
                 fullWidth
+                name="lastname"
+                label="Efternavn"
+                onChange={handleChange}
+                id="lastname"
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
                 name="password"
-                label="Password"
+                label="Kodeord"
                 type="password"
                 onChange={handleChange}
                 id="password"
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="email"
+                label="Email"
+                onChange={handleChange}
+                id="email"
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="phonenumber"
+                label="Telefonnummer"
+                onChange={handleChange}
+                id="phonenumber"
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="address"
+                label="Adresse"
+                onChange={handleChange}
+                id="address"
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="postal"
+                label="Postnummer"
+                onChange={handleChange}
+                id="postal"
               />
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
-                onClick={() => setisLoggedIn(true)}
                 startIcon={<VpnKeyIcon />}
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Sign Up
               </Button>
-              <Grid container>
-                <Grid item>
-                </Grid>
-                <Grid item>
-                  <Link to="/pages/register" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
             </Box>
           </Box>
         </Box>
@@ -147,4 +200,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

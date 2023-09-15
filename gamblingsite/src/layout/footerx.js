@@ -5,7 +5,8 @@ import {
   TextField,
   Toolbar,
   Typography,
-  Box
+  Box,
+  IconButton,
 } from "@mui/material";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import { Link } from "react-router-dom";
@@ -23,21 +24,15 @@ function Footer() {
         <Box textAlign="center" marginTop={4}>
           <TextField
             label="Sign up for newsletter!"
-            value="Your@Email.Now"
             color="primary"
-            focused
-          />
-          <Button
-            variant="contained"
-            startIcon={<EmailIcon />}
-            style={{
-              padding: "15px",
-              marginLeft: "10px",
-              backgroundColor: "#5e90c1",
+            InputProps={{
+              endAdornment: (
+                <IconButton edge="end" color="primary">
+                  {<EmailIcon fontSize="large" />}
+                </IconButton>
+              ),
             }}
-          >
-            Sign up
-          </Button>
+          />
         </Box>
       </Grid>
       <Grid item md="4"></Grid>
