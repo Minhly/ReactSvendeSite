@@ -72,16 +72,17 @@ function Login() {
   };
 
   return (
-    <Grid container marginTop={20} marginBottom={20}>
+    <Grid container marginTop={25} marginBottom={20}>
       <Grid item md="4"></Grid>
-      <Grid item md="4">
-        <Box textAlign="center" marginTop={4}>
+      <Grid item md="4" padding={10} style={{backgroundColor: "#fff", }}>
+        <Box textAlign="center">
           <Typography
             marginBottom={2}
-            variant="h2"
+            variant="h3"
             style={{
               color: "#5e90c1",
               fontWeight: "bold",
+              marginTop: "-20px"
             }}
           >
             Login

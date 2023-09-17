@@ -25,6 +25,8 @@ function Register() {
     username: "",
   });
 
+  const [isDirty, setIsDirty] = useState(false);
+
   const handleChange = (e) => {
     const value = e.target.value;
     setData({
@@ -45,7 +47,7 @@ function Register() {
       address: data.address,
       postalcode: data.postalcode,
       password: data.password,
-      username: data.username
+      username: data.username,
     };
 
     const config = {
@@ -79,14 +81,16 @@ function Register() {
       });
   };
 
+  console.log(data.username.length);
+
   return (
     <Grid container marginTop={20} marginBottom={20}>
-      <Grid item md="4"></Grid>
-      <Grid item md="4">
-        <Box textAlign="center" marginTop={4}>
+      <Grid item md="3"></Grid>
+      <Grid item md="6" padding={15} style={{backgroundColor: "#fff", }}>
+        <Box textAlign="center">
           <Typography
             marginBottom={2}
-            variant="h2"
+            variant="h3"
             style={{
               color: "#5e90c1",
               fontWeight: "bold",
@@ -115,17 +119,20 @@ function Register() {
                 label="Brugernavn"
                 onChange={handleChange}
                 id="username"
-                helperText= {"Field is empty"}
+                error={data.username.length === 0}
+                helperText={data.username.length === 0 ? "Field is empty" : " "}
+                autoFocus
               />
               <TextField
                 margin="normal"
                 required
-                fullWidth
                 id="firstname"
                 label="Fornavn"
                 name="firstname"
                 onChange={handleChange}
-                autoFocus
+                error={data.firstname.length === 0}
+                helperText={data.firstname.length === 0 ? "Field is empty" : ""}
+                style={{ width: "45%" }}
               />
               <TextField
                 margin="normal"
@@ -135,6 +142,9 @@ function Register() {
                 label="Efternavn"
                 onChange={handleChange}
                 id="lastname"
+                style={{ width: "45%", marginLeft: "10%" }}
+                error={data.lastmame.length === 0}
+                helperText={data.lastmame.length === 0 ? "Field is empty" : ""}
               />
               <TextField
                 margin="normal"
@@ -145,6 +155,8 @@ function Register() {
                 type="password"
                 onChange={handleChange}
                 id="password"
+                error={data.password.length === 0}
+                helperText={data.password.length === 0 ? "Field is empty" : ""}
               />
               <TextField
                 margin="normal"
@@ -154,6 +166,9 @@ function Register() {
                 label="Email"
                 onChange={handleChange}
                 id="email"
+                style={{ width: "45%" }}
+                error={data.email.length === 0}
+                helperText={data.email.length === 0 ? "Field is empty" : ""}
               />
               <TextField
                 margin="normal"
@@ -163,15 +178,11 @@ function Register() {
                 label="Telefonnummer"
                 onChange={handleChange}
                 id="phonenumber"
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="address"
-                label="Adresse"
-                onChange={handleChange}
-                id="address"
+                style={{ width: "45%", marginLeft: "10%" }}
+                error={data.phonenumber.length === 0}
+                helperText={
+                  data.phonenumber.length === 0 ? "Field is empty" : ""
+                }
               />
               <TextField
                 margin="normal"
@@ -181,13 +192,29 @@ function Register() {
                 label="Postnummer"
                 onChange={handleChange}
                 id="postal"
+                style={{ width: "45%", float: "left" }}
+                error={data.postalcode.length === 0}
+                helperText={
+                  data.postalcode.length === 0 ? "Field is empty" : ""
+                }
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="address"
+                label="Adresse"
+                onChange={handleChange}
+                id="address"
+                error={data.address.length === 0}
+                helperText={data.address.length === 0 ? "Field is empty" : ""}
               />
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 startIcon={<VpnKeyIcon />}
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 3, mb: 2, paddingTop: "20px", paddingBottom: "20px", backgroundColor: "#5e90c1" }}
               >
                 Sign Up
               </Button>
@@ -195,7 +222,7 @@ function Register() {
           </Box>
         </Box>
       </Grid>
-      <Grid item md="4"></Grid>
+      <Grid item md="3"></Grid>
     </Grid>
   );
 }
