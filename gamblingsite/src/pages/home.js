@@ -47,21 +47,23 @@ function Home() {
           som bruger her
         </Typography>
         <Box textAlign="center" marginTop={4}>
-          <Button
-            variant="contained"
-            startIcon={<SendIcon />}
-            style={{
-              padding: "15px",
-              marginLeft: "10px",
-              backgroundColor: "#000",
-            }}
-          >
-            Sign up
-          </Button>
+          <Link to="/pages/register">
+            <Button
+              variant="contained"
+              startIcon={<SendIcon />}
+              style={{
+                padding: "15px",
+                marginLeft: "10px",
+                backgroundColor: "#000",
+              }}
+            >
+              Sign up
+            </Button>
+          </Link>
         </Box>
       </Grid>
       <Grid item md="6" sm="12" marginTop={5}>
-        <img src={SmexyIphones} alt="Phone" width={900}/>
+        <img src={SmexyIphones} alt="Phone" width={900} />
       </Grid>
     </Grid>
   );
