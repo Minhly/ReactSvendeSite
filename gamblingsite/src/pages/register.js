@@ -10,19 +10,22 @@ import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, Navigate, Route, redirect, useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker";
 
 function Register() {
+  const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
   const [data, setData] = useState({
     firstname: "",
-    lastmame: "",
+    lastname: "",
     password: "",
     email: "",
     phonenumber: "",
-    address: "",
+    address2: "",
     postalcode: "",
     password: "",
     username: "",
+    dateOfBirth: "",
   });
 
   const [isDirty, setIsDirty] = useState(false);
@@ -40,14 +43,17 @@ function Register() {
 
     const userData = {
       firstname: data.firstname,
-      lastmame: data.lastmame,
+      lastname: data.lastname,
       password: data.password,
       email: data.email,
       phonenumber: data.phonenumber,
-      address: data.address,
-      postalcode: data.postalcode,
       password: data.password,
       username: data.username,
+      dateOfBirth: data.dateOfBirth,
+      address: {
+        address1: data.address2,
+        postalcode: data.postalcode,
+      },
     };
 
     const config = {
@@ -55,6 +61,8 @@ function Register() {
         "ngrok-skip-browser-warning": 1,
       },
     };
+
+    console.log(userData);
 
     /*
       const url = "https://deep-wealthy-roughy.ngrok-free.app/user/getusers";
@@ -66,27 +74,24 @@ function Register() {
 
     axios
       .post(
-        "https://deep-wealthy-roughy.ngrok-free.app/User/UserLogin",
+        "https://deep-wealthy-roughy.ngrok-free.app/User/CreateUser",
         userData,
         config
       )
       .then((response) => {
-        if (response.status == 200) {
-          navigate("/pages/admin");
-        } else if (response.status == 423) {
+        if (response.status === 201) {
+          console.log(response);
           navigate("/");
         } else {
-          navigate("/");
+          navigate("/pages/login");
         }
       });
   };
 
-  console.log(data.username.length);
-
   return (
     <Grid container marginTop={20} marginBottom={20}>
       <Grid item md="3"></Grid>
-      <Grid item md="6" padding={15} style={{backgroundColor: "#fff", }}>
+      <Grid item md="6" padding={15} style={{ backgroundColor: "#fff" }}>
         <Box textAlign="center">
           <Typography
             marginBottom={2}
@@ -143,8 +148,8 @@ function Register() {
                 onChange={handleChange}
                 id="lastname"
                 style={{ width: "45%", marginLeft: "10%" }}
-                error={data.lastmame.length === 0}
-                helperText={data.lastmame.length === 0 ? "Field is empty" : ""}
+                error={data.lastname.length === 0}
+                helperText={data.lastname.length === 0 ? "Field is empty" : ""}
               />
               <TextField
                 margin="normal"
@@ -188,10 +193,25 @@ function Register() {
                 margin="normal"
                 required
                 fullWidth
-                name="postal"
+                name="dateOfBirth"
+                label="Fødselsdag"
+                onChange={handleChange}
+                id="dateOfBirth"
+                style={{ width: "45%", marginLeft: "10%"  }}
+                error={data.dateOfBirth.length === 0}
+                helperText={
+                  data.dateOfBirth.length === 0 ? "Field is empty" : ""
+                }
+              />
+              <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="postalcode"
                 label="Postnummer"
                 onChange={handleChange}
-                id="postal"
+                id="postalcode"
                 style={{ width: "45%", float: "left" }}
                 error={data.postalcode.length === 0}
                 helperText={
@@ -202,19 +222,25 @@ function Register() {
                 margin="normal"
                 required
                 fullWidth
-                name="address"
+                name="address2"
                 label="Adresse"
                 onChange={handleChange}
-                id="address"
-                error={data.address.length === 0}
-                helperText={data.address.length === 0 ? "Field is empty" : ""}
+                id="address2"
+                error={data.address2.length === 0}
+                helperText={data.address2.length === 0 ? "Field is empty" : ""}
               />
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 startIcon={<VpnKeyIcon />}
-                sx={{ mt: 3, mb: 2, paddingTop: "20px", paddingBottom: "20px", backgroundColor: "#5e90c1" }}
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  paddingTop: "20px",
+                  paddingBottom: "20px",
+                  backgroundColor: "#5e90c1",
+                }}
               >
                 Sign Up
               </Button>

@@ -32,12 +32,53 @@ import {
             >
               Regler og Vilkår
             </Typography>
-            <DemoPaper square elevation={20}>1. Generelt
+            <DemoPaper square elevation={20}>
+1.2. Registrering som spiller hos Danske Licens Spil kan kun foretages af en person, som
 
  
 
-1.1. De vilkår, der følger nedenfor gælder for personer, der ønsker at oprette en netspilskonto på danskespil.dk eller som ønsker at deltage i spil udbudt af Danske Licens Spil på danskespil.dk. Personer, der ønsker at oprette en netspilskonto, skal registreres som kontoindehaver (herefter ”spiller”), for at kunne deltage i spil på danskespil.dk. Disse vilkår gælder også, når spilleren benytter sin netspilskonto på en mobilenhed, herunder på en af Danske Licens Spils udbudte apps. Henvisninger til danskespil.dk i disse vilkår er både en henvisning til danskespil.dk og Danske Licens Spils udbudte apps, medmindre andet et anført.
-<br></br><br></br>2.1. Registrering som spiller hos Danske Licens Spil kan kun foretages af en person, som
+·       har dansk (herunder grønlandsk) eller færøsk CPR-nummer,
+
+·       er fyldt 18 år,
+
+·       ikke er erklæret personligt konkurs, og
+
+·       ikke er umyndiggjort eller sat under værgemål.
+·       har dansk (herunder grønlandsk) eller færøsk CPR-nummer,
+
+·       er fyldt 18 år,
+·       har dansk (herunder grønlandsk) eller færøsk CPR-nummer,
+
+·       er fyldt 18 år,
+
+·       ikke er erklæret personligt konkurs, og
+
+·       ikke er umyndiggjort eller sat under værgemål.
+·       ikke er erklæret personligt konkurs, og
+
+·       ikke er umyndiggjort eller sat under værgemål.
+
+Spilleren er forpligtet til straks at informere Danske Licens Spil, såfremt en eller flere af ovenstående krav ikke længere er opfyldt.<br></br><br></br>
+2.1. Registrering som spiller hos Danske Licens Spil kan kun foretages af en person, som
+
+·       har dansk (herunder grønlandsk) eller færøsk CPR-nummer,
+
+·       er fyldt 18 år,
+
+·       ikke er erklæret personligt konkurs, og
+
+·       ikke er umyndiggjort eller sat under værgemål.
+
+·       har dansk (herunder grønlandsk) eller færøsk CPR-nummer,
+
+·       er fyldt 18 år,
+
+·       ikke er erklæret personligt konkurs, og
+
+·       ikke er umyndiggjort eller sat under værgemål.
+
+Spilleren er forpligtet til straks at informere Danske Licens Spil, såfremt en eller flere af ovenstående krav ikke længere er opfyldt.<br></br><br></br>
+2.2. Registrering som spiller hos Danske Licens Spil kan kun foretages af en person, som
 
  
 

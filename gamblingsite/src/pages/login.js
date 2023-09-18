@@ -30,6 +30,9 @@ function Login() {
     });
   };
 
+  var item_value = sessionStorage.getItem("item_key");
+  console.log(item_value);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -61,6 +64,8 @@ function Login() {
       .then((response) => {
         if (response.status == 200) {
           navigate("/pages/admin");
+          console.log(response)
+          sessionStorage.setItem("item_key", response.data.token);
         }
         else if (response.status == 423){
             navigate("/");
