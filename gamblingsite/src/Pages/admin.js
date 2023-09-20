@@ -5,10 +5,12 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Grid } from "@mui/material";
+import EditUser from "../components/editUser";
+import { useLoggedInStore } from "../components/zustandStore";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
-
+  console.log("testy1")
   return (
     <div
       role="tabpanel"
@@ -33,6 +35,7 @@ CustomTabPanel.propTypes = {
 };
 
 function a11yProps(index) {
+  console.log("testy2")
   return {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
@@ -40,8 +43,9 @@ function a11yProps(index) {
 }
 
 export default function Admin() {
+  console.log("testy3")
   const [value, setValue] = React.useState(0);
-
+  const isLoggedIn = useLoggedInStore((state) => state.isLoggedIn);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -50,34 +54,38 @@ export default function Admin() {
     <Grid container marginTop={20} marginBottom={20}>
       <Grid item md="3"></Grid>
       <Grid item md="6" padding={5} style={{ backgroundColor: "#fff" }}>
-        <Box textAlign="center">
-          <Box sx={{ width: "100%" }}>
-            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                aria-label="basic tabs example"
-              >
-                <Tab label="User" {...a11yProps(0)} />
-                <Tab label="Wallet" {...a11yProps(1)} />
-                <Tab label="Betting History" {...a11yProps(2)} />
-                <Tab label="Game Management" {...a11yProps(3)} />
-              </Tabs>
+        {isLoggedIn ? (
+          <Box textAlign="center">
+            <Box sx={{ width: "100%" }}>
+              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  aria-label="basic tabs example"
+                >
+                  <Tab label="User" {...a11yProps(0)} />
+                  <Tab label="Wallet" {...a11yProps(1)} />
+                  <Tab label="Betting History" {...a11yProps(2)} />
+                  <Tab label="Game Management" {...a11yProps(3)} />
+                </Tabs>
+              </Box>
+              <CustomTabPanel value={value} index={0}>
+                <EditUser />
+              </CustomTabPanel>
+              <CustomTabPanel value={value} index={1}>
+                Wallet
+              </CustomTabPanel>
+              <CustomTabPanel value={value} index={2}>
+                Betting History
+              </CustomTabPanel>
+              <CustomTabPanel value={value} index={3}>
+                Game Management
+              </CustomTabPanel>
             </Box>
-            <CustomTabPanel value={value} index={0}>
-              User
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
-              Wallet
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
-              Betting History
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={3}>
-            Game Management
-            </CustomTabPanel>
           </Box>
-        </Box>
+        ) : (
+          "Oh you sneaky person! Get out!"
+        )}
       </Grid>
       <Grid item md="3"></Grid>
     </Grid>

@@ -10,11 +10,14 @@ import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, Navigate, Route, redirect, useNavigate } from "react-router-dom";
+import { useLoggedInStore } from '../components/zustandStore';
+import { shallow } from 'zustand/shallow'
 
 function Login() {
+  const setIsLoggedIn = useLoggedInStore((state) => state.setIsLoggedIn)
+  const setBearerToken = useLoggedInStore((state) => state.setBearerToken);
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoggedIn, setisLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [data, setData] = useState({
     email: "",
@@ -22,16 +25,12 @@ function Login() {
   });
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     const value = e.target.value;
     setData({
       ...data,
       [e.target.name]: value,
     });
   };
-
-  var item_value = sessionStorage.getItem("item_key");
-  console.log(item_value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -64,14 +63,18 @@ function Login() {
         )
         .then((response) => {
           if (response.status == 200) {
+            console.log(response.status);
+            setIsLoggedIn(true);
+            console.log("1")
+            setBearerToken(response.data.token);
+            console.log("2")
             navigate("/pages/admin");
-            sessionStorage.setItem("item_key", response.data.token);
           } else if (response.status == 423) {
             navigate("/pages/login");
           } else if (response.status == 400) {
             navigate("/pages/login");
           } else {
-            navigate("/pages/login");
+            navigate("/");
           }
         }).catch(error => { console.log(error.response)});
     } catch (error) {
@@ -132,7 +135,6 @@ function Login() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                onClick={() => setisLoggedIn(true)}
                 startIcon={<VpnKeyIcon />}
                 sx={{ mt: 3, mb: 2 }}
               >
