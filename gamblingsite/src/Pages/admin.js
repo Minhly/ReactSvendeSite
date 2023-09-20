@@ -1,228 +1,85 @@
-import {
-  Button,
-  Grid,
-  TextField,
-  Typography,
-  Box,
-  FormControlLabel,
-} from "@mui/material";
-import VpnKeyIcon from "@mui/icons-material/VpnKey";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Link, Navigate, Route, redirect, useNavigate } from "react-router-dom";
+import * as React from "react";
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import { Grid } from "@mui/material";
 
-function Admin() {
-  const navigate = useNavigate();
-  const [data, setData] = useState({
-    firstname: "",
-    lastmame: "",
-    password: "",
-    email: "",
-    phonenumber: "",
-    address: "",
-    postalcode: "",
-    password: "",
-    username: "",
-  });
+function CustomTabPanel(props) {
+  const { children, value, index, ...other } = props;
 
-  const [isDirty, setIsDirty] = useState(false);
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setData({
-      ...data,
-      [e.target.name]: value,
-    });
+CustomTabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
+}
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+export default function Admin() {
+  const [value, setValue] = React.useState(0);
 
-    const userData = {
-      firstname: data.firstname,
-      lastmame: data.lastmame,
-      password: data.password,
-      email: data.email,
-      phonenumber: data.phonenumber,
-      address: data.address,
-      postalcode: data.postalcode,
-      password: data.password,
-      username: data.username,
-    };
-
-    const config = {
-      headers: {
-        "ngrok-skip-browser-warning": 1,
-      },
-    };
-
-    /*
-      const url = "https://deep-wealthy-roughy.ngrok-free.app/user/getusers";
-      
-      axios.get(url, config)
-      .then(res=> console.log(res))
-      .catch(err=> console.log(err))
-        */
-
-    axios
-      .post(
-        "https://deep-wealthy-roughy.ngrok-free.app/User/UserLogin",
-        userData,
-        config
-      )
-      .then((response) => {
-        if (response.status == 200) {
-          navigate("/pages/admin");
-        } else if (response.status == 423) {
-          navigate("/");
-        } else {
-          navigate("/");
-        }
-      });
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
   return (
     <Grid container marginTop={20} marginBottom={20}>
-      <Grid item md="2"></Grid>
-      <Grid item md="8" padding={15} style={{backgroundColor: "#fff", }}>
+      <Grid item md="3"></Grid>
+      <Grid item md="6" padding={5} style={{ backgroundColor: "#fff" }}>
         <Box textAlign="center">
-          <Typography
-            marginBottom={2}
-            variant="h3"
-            style={{
-              color: "#5e90c1",
-              fontWeight: "bold",
-            }}
-          >
-            Create Account
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              noValidate
-              sx={{ mt: 1 }}
-            >
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="username"
-                label="Brugernavn"
+          <Box sx={{ width: "100%" }}>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <Tabs
+                value={value}
                 onChange={handleChange}
-                id="username"
-                error={data.username.length === 0}
-                helperText={data.username.length === 0 ? "Field is empty" : " "}
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                required
-                id="firstname"
-                label="Fornavn"
-                name="firstname"
-                onChange={handleChange}
-                error={data.firstname.length === 0}
-                helperText={data.firstname.length === 0 ? "Field is empty" : ""}
-                style={{ width: "45%" }}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="lastname"
-                label="Efternavn"
-                onChange={handleChange}
-                id="lastname"
-                style={{ width: "45%", marginLeft: "10%" }}
-                error={data.lastmame.length === 0}
-                helperText={data.lastmame.length === 0 ? "Field is empty" : ""}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Kodeord"
-                type="password"
-                onChange={handleChange}
-                id="password"
-                error={data.password.length === 0}
-                helperText={data.password.length === 0 ? "Field is empty" : ""}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="email"
-                label="Email"
-                onChange={handleChange}
-                id="email"
-                style={{ width: "45%" }}
-                error={data.email.length === 0}
-                helperText={data.email.length === 0 ? "Field is empty" : ""}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="phonenumber"
-                label="Telefonnummer"
-                onChange={handleChange}
-                id="phonenumber"
-                style={{ width: "45%", marginLeft: "10%" }}
-                error={data.phonenumber.length === 0}
-                helperText={
-                  data.phonenumber.length === 0 ? "Field is empty" : ""
-                }
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="postal"
-                label="Postnummer"
-                onChange={handleChange}
-                id="postal"
-                style={{ width: "45%", float: "left" }}
-                error={data.postalcode.length === 0}
-                helperText={
-                  data.postalcode.length === 0 ? "Field is empty" : ""
-                }
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="address"
-                label="Adresse"
-                onChange={handleChange}
-                id="address"
-                error={data.address.length === 0}
-                helperText={data.address.length === 0 ? "Field is empty" : ""}
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                startIcon={<VpnKeyIcon />}
-                sx={{ mt: 3, mb: 2, paddingTop: "20px", paddingBottom: "20px", backgroundColor: "#5e90c1" }}
+                aria-label="basic tabs example"
               >
-                Sign Up
-              </Button>
+                <Tab label="User" {...a11yProps(0)} />
+                <Tab label="Wallet" {...a11yProps(1)} />
+                <Tab label="Betting History" {...a11yProps(2)} />
+                <Tab label="Game Management" {...a11yProps(3)} />
+              </Tabs>
             </Box>
+            <CustomTabPanel value={value} index={0}>
+              User
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={1}>
+              Wallet
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={2}>
+              Betting History
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={3}>
+            Game Management
+            </CustomTabPanel>
           </Box>
         </Box>
       </Grid>
-      <Grid item md="2"></Grid>
+      <Grid item md="3"></Grid>
     </Grid>
   );
 }
-
-export default Admin;

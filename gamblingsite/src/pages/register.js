@@ -11,9 +11,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, Navigate, Route, redirect, useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "../layout/register.css";
 
 function Register() {
-  const [startDate, setStartDate] = useState(new Date());
+  const [date, setDate] = useState(new Date("01/01/1999"));
+  const handleCalendarClose = () => console.log("Calendar closed");
+  const handleCalendarOpen = () => console.log("Calendar opened");
   const navigate = useNavigate();
   const [data, setData] = useState({
     firstname: "",
@@ -23,7 +27,6 @@ function Register() {
     phonenumber: "",
     address2: "",
     postalcode: "",
-    password: "",
     username: "",
     dateOfBirth: "",
   });
@@ -47,9 +50,8 @@ function Register() {
       password: data.password,
       email: data.email,
       phonenumber: data.phonenumber,
-      password: data.password,
       username: data.username,
-      dateOfBirth: data.dateOfBirth,
+      dateOfBirth: date,
       address: {
         address1: data.address2,
         postalcode: data.postalcode,
@@ -62,7 +64,7 @@ function Register() {
       },
     };
 
-    console.log(userData);
+    console.log(date);
 
     /*
       const url = "https://deep-wealthy-roughy.ngrok-free.app/user/getusers";
@@ -71,21 +73,24 @@ function Register() {
       .then(res=> console.log(res))
       .catch(err=> console.log(err))
         */
-
-    axios
-      .post(
-        "https://deep-wealthy-roughy.ngrok-free.app/User/CreateUser",
-        userData,
-        config
-      )
-      .then((response) => {
-        if (response.status === 201) {
-          console.log(response);
-          navigate("/");
-        } else {
-          navigate("/pages/login");
-        }
-      });
+    try {
+      axios
+        .post(
+          "https://deep-wealthy-roughy.ngrok-free.app/User/CreateUser",
+          userData,
+          config
+        )
+        .then((response) => {
+          if (response.status === 201) {
+            console.log(response);
+            navigate("/");
+          } else {
+            navigate("/pages/login");
+          }
+        }).catch(error => { console.log(error.response)});
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -104,18 +109,12 @@ function Register() {
             Create Account
           </Typography>
           <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
           >
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              noValidate
-              sx={{ mt: 1 }}
-            >
+            <Grid item md="12">
               <TextField
                 margin="normal"
                 required
@@ -128,29 +127,42 @@ function Register() {
                 helperText={data.username.length === 0 ? "Field is empty" : " "}
                 autoFocus
               />
-              <TextField
-                margin="normal"
-                required
-                id="firstname"
-                label="Fornavn"
-                name="firstname"
-                onChange={handleChange}
-                error={data.firstname.length === 0}
-                helperText={data.firstname.length === 0 ? "Field is empty" : ""}
-                style={{ width: "45%" }}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="lastname"
-                label="Efternavn"
-                onChange={handleChange}
-                id="lastname"
-                style={{ width: "45%", marginLeft: "10%" }}
-                error={data.lastname.length === 0}
-                helperText={data.lastname.length === 0 ? "Field is empty" : ""}
-              />
+            </Grid>
+            <Grid container md="12">
+              <Grid item md="6">
+                <TextField
+                  margin="normal"
+                  required
+                  id="firstname"
+                  label="Fornavn"
+                  name="firstname"
+                  fullWidth
+                  onChange={handleChange}
+                  error={data.firstname.length === 0}
+                  helperText={
+                    data.firstname.length === 0 ? "Field is empty" : ""
+                  }
+                />
+              </Grid>
+
+              <Grid item md="6">
+                <TextField
+                  margin="normal"
+                  required
+                  name="lastname"
+                  label="Efternavn"
+                  onChange={handleChange}
+                  id="lastname"
+                  style={{ width: "95%", marginLeft: "10px" }}
+                  error={data.lastname.length === 0}
+                  helperText={
+                    data.lastname.length === 0 ? "Field is empty" : ""
+                  }
+                />
+              </Grid>
+            </Grid>
+
+            <Grid item md="12">
               <TextField
                 margin="normal"
                 required
@@ -163,32 +175,41 @@ function Register() {
                 error={data.password.length === 0}
                 helperText={data.password.length === 0 ? "Field is empty" : ""}
               />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="email"
-                label="Email"
-                onChange={handleChange}
-                id="email"
-                style={{ width: "45%" }}
-                error={data.email.length === 0}
-                helperText={data.email.length === 0 ? "Field is empty" : ""}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="phonenumber"
-                label="Telefonnummer"
-                onChange={handleChange}
-                id="phonenumber"
-                style={{ width: "45%", marginLeft: "10%" }}
-                error={data.phonenumber.length === 0}
-                helperText={
-                  data.phonenumber.length === 0 ? "Field is empty" : ""
-                }
-              />
+            </Grid>
+            <Grid container md="12">
+              <Grid item md="6">
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="email"
+                  label="Email"
+                  onChange={handleChange}
+                  id="email"
+                  error={data.email.length === 0}
+                  helperText={data.email.length === 0 ? "Field is empty" : ""}
+                />
+              </Grid>
+
+              <Grid item md="6">
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="phonenumber"
+                  label="Telefonnummer"
+                  onChange={handleChange}
+                  id="phonenumber"
+                  style={{ width: "95%", marginLeft: "10px" }}
+                  error={data.phonenumber.length === 0}
+                  helperText={
+                    data.phonenumber.length === 0 ? "Field is empty" : ""
+                  }
+                />
+              </Grid>
+            </Grid>
+
+            {/*
               <TextField
                 margin="normal"
                 required
@@ -197,27 +218,44 @@ function Register() {
                 label="Fødselsdag"
                 onChange={handleChange}
                 id="dateOfBirth"
-                style={{ width: "45%", marginLeft: "10%"  }}
+                style={{ width: "45%", marginLeft: "10%" }}
                 error={data.dateOfBirth.length === 0}
                 helperText={
-                  data.dateOfBirth.length === 0 ? "Field is empty" : ""
+                    data.dateOfBirth.length === 0 ? "Field is empty" : ""
                 }
               />
-              <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="postalcode"
-                label="Postnummer"
-                onChange={handleChange}
-                id="postalcode"
-                style={{ width: "45%", float: "left" }}
-                error={data.postalcode.length === 0}
-                helperText={
-                  data.postalcode.length === 0 ? "Field is empty" : ""
-                }
-              />
+               */}
+            <Grid container md="12">
+              <Grid item md="6">
+                <TextField
+                  margin="normal"
+                  required
+                  name="postalcode"
+                  label="Postnummer"
+                  fullWidth
+                  onChange={handleChange}
+                  id="postalcode"
+                  error={data.postalcode.length === 0}
+                  helperText={
+                    data.postalcode.length === 0 ? "Field is empty" : ""
+                  }
+                />
+              </Grid>
+              <Grid item md="6">
+                <DatePicker
+                  selected={date}
+                  onChange={(date) => setDate(date)}
+                  onCalendarClose={handleCalendarClose}
+                  onCalendarOpen={handleCalendarOpen}
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
+                  startDate={date}
+                  wrapperClassName="datePicker"
+                />
+              </Grid>
+            </Grid>
+            <Grid item md="12">
               <TextField
                 margin="normal"
                 required
@@ -229,6 +267,8 @@ function Register() {
                 error={data.address2.length === 0}
                 helperText={data.address2.length === 0 ? "Field is empty" : ""}
               />
+            </Grid>
+            <Grid item md="12">
               <Button
                 type="submit"
                 fullWidth
@@ -244,7 +284,7 @@ function Register() {
               >
                 Sign Up
               </Button>
-            </Box>
+            </Grid>
           </Box>
         </Box>
       </Grid>
