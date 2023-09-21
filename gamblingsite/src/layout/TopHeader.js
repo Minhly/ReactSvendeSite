@@ -17,8 +17,6 @@ const TopHeader = () => {
     setBearerToken("");
   };
   
-  console.log(isLoggedIn)
-  console.log(bearerToken)
   return (
     <AppBar style={{ background: "#5e90c1", width: "100%" }}>
       <Toolbar>

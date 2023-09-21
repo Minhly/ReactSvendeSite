@@ -64,8 +64,6 @@ function Register() {
       },
     };
 
-    console.log(date);
-
     /*
       const url = "https://deep-wealthy-roughy.ngrok-free.app/user/getusers";
       

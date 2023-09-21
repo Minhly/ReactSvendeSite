@@ -7,10 +7,11 @@ import Box from "@mui/material/Box";
 import { Grid } from "@mui/material";
 import EditUser from "../components/editUser";
 import { useLoggedInStore } from "../components/zustandStore";
+import EditUserWallet from "../components/editUserWallet";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
-  console.log("testy1")
+
   return (
     <div
       role="tabpanel"
@@ -35,7 +36,6 @@ CustomTabPanel.propTypes = {
 };
 
 function a11yProps(index) {
-  console.log("testy2")
   return {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
@@ -43,7 +43,6 @@ function a11yProps(index) {
 }
 
 export default function Admin() {
-  console.log("testy3")
   const [value, setValue] = React.useState(0);
   const isLoggedIn = useLoggedInStore((state) => state.isLoggedIn);
   const handleChange = (event, newValue) => {
@@ -64,7 +63,7 @@ export default function Admin() {
                   aria-label="basic tabs example"
                 >
                   <Tab label="User" {...a11yProps(0)} />
-                  <Tab label="Wallet" {...a11yProps(1)} />
+                  <Tab label="User Wallet" {...a11yProps(1)} />
                   <Tab label="Betting History" {...a11yProps(2)} />
                   <Tab label="Game Management" {...a11yProps(3)} />
                 </Tabs>
@@ -73,7 +72,7 @@ export default function Admin() {
                 <EditUser />
               </CustomTabPanel>
               <CustomTabPanel value={value} index={1}>
-                Wallet
+                <EditUserWallet/>
               </CustomTabPanel>
               <CustomTabPanel value={value} index={2}>
                 Betting History
