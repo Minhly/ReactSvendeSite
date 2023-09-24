@@ -8,6 +8,8 @@ import { Grid } from "@mui/material";
 import EditUser from "../components/editUser";
 import { useLoggedInStore } from "../components/zustandStore";
 import EditUserWallet from "../components/editUserWallet";
+import GameAdministration from "../components/gameAdministration";
+import GameCharacterAdministration from "../components/gameCharacterAdministration";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,10 +64,10 @@ export default function Admin() {
                   onChange={handleChange}
                   aria-label="basic tabs example"
                 >
-                  <Tab label="User" {...a11yProps(0)} />
-                  <Tab label="User Wallet" {...a11yProps(1)} />
-                  <Tab label="Betting History" {...a11yProps(2)} />
-                  <Tab label="Game Management" {...a11yProps(3)} />
+                  <Tab label="Bruger" {...a11yProps(0)} />
+                  <Tab label="Bruger Saldo" {...a11yProps(1)} />
+                  <Tab label="Spil Administration" {...a11yProps(2)} />
+                  <Tab label="Spil karakter administration" {...a11yProps(3)} />
                 </Tabs>
               </Box>
               <CustomTabPanel value={value} index={0}>
@@ -75,10 +77,10 @@ export default function Admin() {
                 <EditUserWallet/>
               </CustomTabPanel>
               <CustomTabPanel value={value} index={2}>
-                Betting History
+                <GameAdministration/>
               </CustomTabPanel>
               <CustomTabPanel value={value} index={3}>
-                Game Management
+                <GameCharacterAdministration/>
               </CustomTabPanel>
             </Box>
           </Box>
