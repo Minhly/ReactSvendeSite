@@ -18,12 +18,14 @@ import {
     }));
 
     return (
-      <Grid container marginTop={20} marginBottom={20}>
+      <Grid container marginTop={22} marginBottom={20}>
         <Grid item md="3"></Grid>
         <Grid item md="6">
           <Box textAlign="center" marginTop={4}>
+
+            <DemoPaper square elevation={20}>
             <Typography
-              marginBottom={5}
+              marginBottom={8}
               variant="h2"
               style={{
                 color: "#5e90c1",
@@ -32,7 +34,6 @@ import {
             >
               Regler og Vilkår
             </Typography>
-            <DemoPaper square elevation={20}>
 1.2. Registrering som spiller hos Danske Licens Spil kan kun foretages af en person, som
 
  

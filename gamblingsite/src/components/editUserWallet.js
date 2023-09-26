@@ -67,7 +67,12 @@ function EditUserWallet() {
       })
       .catch((err) => console.log(err));
   }, []);
-
+  useEffect(() => {
+    axios
+      .get(url, config)
+      .then((res) => {setFilteredList(res.data)})
+      .catch((err) => console.log(err));
+  }, []);
   const filterBySearch = (event) => {
     const query = event.target.value;
     var updatedList = [...users];
@@ -92,12 +97,12 @@ function EditUserWallet() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="left">Id</TableCell>
-              <TableCell align="left">Brugernavn</TableCell>
-              <TableCell align="left">Fornavn</TableCell>
-              <TableCell align="left">Efternavn</TableCell>
-              <TableCell align="left">Email</TableCell>
-              <TableCell align="left">Saldo</TableCell>
+              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Id</TableCell>
+              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Brugernavn</TableCell>
+              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Fornavn</TableCell>
+              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Efternavn</TableCell>
+              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Email</TableCell>
+              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Saldo</TableCell>
               <TableCell align="left"></TableCell>
             </TableRow>
           </TableHead>

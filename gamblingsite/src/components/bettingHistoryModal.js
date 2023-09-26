@@ -1,4 +1,16 @@
-import { Grid, TextField, Typography, Box, Button, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
+import {
+  Grid,
+  TextField,
+  Typography,
+  Box,
+  Button,
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+} from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
@@ -23,7 +35,7 @@ const style = {
   p: 4,
 };
 
-export default function UserWalletModal(props) {
+export default function BettingHistoryModal(props) {
   const [checked, setChecked] = useState(props.user.active);
   const handleCalendarClose = () => console.log("Calendar closed");
   const handleCalendarOpen = () => console.log("Calendar opened");
@@ -135,7 +147,9 @@ export default function UserWalletModal(props) {
               </Button>
             </Grid>
             <Grid item md="12">
-              <Typography variant="h5" mt={2}>Saldo Historik</Typography>
+              <Typography variant="h5" mt={2}>
+                Saldo Historik
+              </Typography>
               <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                   <TableHead>

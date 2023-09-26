@@ -27,12 +27,12 @@ function Home() {
           marginTop={5}
         >
           <Grid item md="3" marginLeft={5}>
-            <Link to="/pages/login">
+            <Link to="/pages/register">
               <img src={Googleplay} alt="Googleplay" width={200} />
             </Link>
           </Grid>
           <Grid item md="3" marginLeft={5}>
-            <Link to="/pages/login">
+            <Link to="/pages/register">
               <img src={Appstore} alt="Appstore" width={200} />
             </Link>
           </Grid>

@@ -24,6 +24,7 @@ import "../layout/register.css";
 import EditIcon from "@mui/icons-material/Edit";
 import UserModal from "./userModal";
 import { useLoggedInStore } from "../components/zustandStore";
+import BettingHistoryModal from "./bettingHistoryModal";
 
 function createData(
   id,
@@ -47,7 +48,7 @@ function createData(
   };
 }
 
-function EditUser() {
+function GetBettingHistory() {
   const [users, SetUsers] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const bearerToken = useLoggedInStore((state) => state.bearerToken);
@@ -55,7 +56,7 @@ function EditUser() {
   const config = {
     headers: {
       "ngrok-skip-browser-warning": 1,
-       Authorization: `Bearer ${bearerToken}`
+      Authorization: `Bearer ${bearerToken}`,
     },
   };
 
@@ -63,17 +64,21 @@ function EditUser() {
   useEffect(() => {
     axios
       .get(url, config)
-      .then((res) => {SetUsers(res.data)})
+      .then((res) => {
+        SetUsers(res.data);
+      })
       .catch((err) => console.log(err));
   }, []);
   useEffect(() => {
     axios
       .get(url, config)
-      .then((res) => {setFilteredList(res.data)})
+      .then((res) => {
+        setFilteredList(res.data);
+      })
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(filteredList)
+  console.log(filteredList);
   const filterBySearch = (event) => {
     const query = event.target.value;
     var updatedList = [...users];
@@ -98,14 +103,52 @@ function EditUser() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Id</TableCell>
-              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Brugernavn</TableCell>
-              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Fornavn</TableCell>
-              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Efternavn</TableCell>
-              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Email</TableCell>
-              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Fødselsdag</TableCell>
-              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Aktiv</TableCell>
-              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}></TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Id
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Brugernavn
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Fornavn
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Efternavn
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Email
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Fødselsdag
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Aktiv
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              ></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -124,7 +167,7 @@ function EditUser() {
                 <TableCell align="left">{row.dateOfBirth}</TableCell>
                 <TableCell align="left">{row.active.toString()}</TableCell>
                 <TableCell align="left">
-                  <UserModal user={row} />
+                  <BettingHistoryModal user={row} />
                 </TableCell>
               </TableRow>
             ))}
@@ -135,4 +178,4 @@ function EditUser() {
   );
 }
 
-export default EditUser;
+export default GetBettingHistory;

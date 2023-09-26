@@ -92,12 +92,12 @@ function Register() {
   };
 
   return (
-    <Grid container marginTop={20} marginBottom={20}>
+    <Grid container marginTop={25} marginBottom={20}>
       <Grid item md="3"></Grid>
-      <Grid item md="6" padding={15} style={{ backgroundColor: "#fff" }}>
+      <Grid item md="6" padding={8} style={{ backgroundColor: "#fff" }}>
         <Box textAlign="center">
           <Typography
-            marginBottom={2}
+            marginBottom={4}
             variant="h3"
             style={{
               color: "#5e90c1",

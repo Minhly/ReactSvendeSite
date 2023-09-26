@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, Navigate, Route, redirect, useNavigate } from "react-router-dom";
 import { useLoggedInStore } from '../components/zustandStore';
-import { shallow } from 'zustand/shallow'
 
 function Login() {
   const setIsLoggedIn = useLoggedInStore((state) => state.setIsLoggedIn)

@@ -30,7 +30,9 @@ function Footer() {
     >
       <Grid item md="4">
         <Box textAlign="center" marginTop={2}>
-          <img src={DkLogo} alt="DkLogo" width={"10%"} />
+          <Link to="https://danskespil.dk/">
+            <img src={DkLogo} alt="DkLogo" width={"10%"} />
+          </Link>
         </Box>
       </Grid>
       <Grid item md="4">

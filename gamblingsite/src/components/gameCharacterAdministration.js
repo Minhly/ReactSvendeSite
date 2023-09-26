@@ -28,6 +28,7 @@ import GameEditModal from "./gameEditModal";
 import GameCreateModal from "./gameCreateModal";
 import GameCreateCharacterModal from "./gameCreateCharacterModal";
 import GameEditCharacterModal from "./gameEditCharacterModal";
+import DeleteModal from "./deleteModal";
 
 function createData(id, name, odds, gameId) {
   return {
@@ -67,10 +68,11 @@ function GameCharacterAdministration() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="left">Id</TableCell>
-              <TableCell align="left">Navn</TableCell>
-              <TableCell align="left">Odds</TableCell>
-              <TableCell align="left">Spil Id</TableCell>
+              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Id</TableCell>
+              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Navn</TableCell>
+              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Odds</TableCell>
+              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Spil Id</TableCell>
+              <TableCell align="left"></TableCell>
               <TableCell align="left"></TableCell>
             </TableRow>
           </TableHead>
@@ -86,6 +88,9 @@ function GameCharacterAdministration() {
                 <TableCell align="left">{row.name}</TableCell>
                 <TableCell align="left">{row.odds}</TableCell>
                 <TableCell align="left">{row.gameId}</TableCell>
+                <TableCell align="left">
+                  <DeleteModal game={row} />
+                </TableCell>
                 <TableCell align="left">
                   <GameEditCharacterModal character={row} />
                 </TableCell>

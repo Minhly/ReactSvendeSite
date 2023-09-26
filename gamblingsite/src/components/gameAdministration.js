@@ -66,11 +66,36 @@ function GameAdministration() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="left">Id</TableCell>
-              <TableCell align="left">Navn</TableCell>
-              <TableCell align="left">Beskrivelse</TableCell>
-              <TableCell align="left">Spil Type</TableCell>
-              <TableCell align="left">Spil Ikon</TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Id
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Navn
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Beskrivelse
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Spil Type
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Spil Ikon
+              </TableCell>
               <TableCell align="left"></TableCell>
             </TableRow>
           </TableHead>

@@ -10,6 +10,7 @@ import { useLoggedInStore } from "../components/zustandStore";
 import EditUserWallet from "../components/editUserWallet";
 import GameAdministration from "../components/gameAdministration";
 import GameCharacterAdministration from "../components/gameCharacterAdministration";
+import GetBettingHistory from "../components/getBettingHistory";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -52,9 +53,17 @@ export default function Admin() {
   };
 
   return (
-    <Grid container marginTop={20} marginBottom={20}>
+    <Grid container marginTop={23} marginBottom={20}>
       <Grid item md="3"></Grid>
       <Grid item md="6" padding={5} style={{ backgroundColor: "#fff" }}>
+        <Typography
+          variant="h2"
+          align="center"
+          marginBottom={2}
+          sx={{ color: "#5e90c1" }}
+        >
+          Administration
+        </Typography>
         {isLoggedIn ? (
           <Box textAlign="center">
             <Box sx={{ width: "100%" }}>
@@ -64,23 +73,27 @@ export default function Admin() {
                   onChange={handleChange}
                   aria-label="basic tabs example"
                 >
-                  <Tab label="Bruger" {...a11yProps(0)} />
-                  <Tab label="Bruger Saldo" {...a11yProps(1)} />
-                  <Tab label="Spil Administration" {...a11yProps(2)} />
-                  <Tab label="Spil karakter administration" {...a11yProps(3)} />
+                  <Tab sx={{color:"#84bfd1"}} label="Bruger" {...a11yProps(0)} />
+                  <Tab sx={{color:"#84bfd1"}} label="Bruger Saldo" {...a11yProps(1)} />
+                  <Tab sx={{color:"#84bfd1"}} label="Spil" {...a11yProps(2)} />
+                  <Tab sx={{color:"#84bfd1"}} label="Spil karakter" {...a11yProps(3)} />
+                  <Tab sx={{color:"#84bfd1"}} label="Spil historik" {...a11yProps(4)} />
                 </Tabs>
               </Box>
               <CustomTabPanel value={value} index={0}>
                 <EditUser />
               </CustomTabPanel>
               <CustomTabPanel value={value} index={1}>
-                <EditUserWallet/>
+                <EditUserWallet />
               </CustomTabPanel>
               <CustomTabPanel value={value} index={2}>
-                <GameAdministration/>
+                <GameAdministration />
               </CustomTabPanel>
               <CustomTabPanel value={value} index={3}>
-                <GameCharacterAdministration/>
+                <GameCharacterAdministration />
+              </CustomTabPanel>
+              <CustomTabPanel value={value} index={4}>
+                <GetBettingHistory />
               </CustomTabPanel>
             </Box>
           </Box>

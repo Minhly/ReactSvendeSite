@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import CookieConsent from "../components/cookieConsent";
 import { useLoggedInStore } from "../components/zustandStore";
+import gambleonlogo from '../assets/gambleonlogo3.png';
 
 const TopHeader = () => {
   const [cookies] = useCookies(["cookieConsent"]);
@@ -22,11 +23,9 @@ const TopHeader = () => {
       <Toolbar>
         <Grid container padding={4}>
           <Grid item md="10">
-            <Typography variant="h3" fontWeight="bold">
               <Link to="/" style={{ textDecoration: "none", color: "#fff" }}>
-                Gambleon
+              <img src={gambleonlogo} alt="gambleonLogo" width={200} />
               </Link>
-            </Typography>
             {!cookies.cookieConsent && <CookieConsent />}
           </Grid>
           <Grid item md="2" align="right" marginTop={1}>
