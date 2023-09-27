@@ -53,9 +53,17 @@ export default function Admin() {
   };
 
   return (
-    <Grid container marginTop={23} marginBottom={20}>
-      <Grid item md="3"></Grid>
-      <Grid item md="6" padding={5} style={{ backgroundColor: "#fff" }}>
+    <Grid container md="12" xs="12" marginTop={23} marginBottom={20}>
+      <Grid item md="0" xl="3" sm="0"></Grid>
+      <Grid
+        item
+        md="12"
+        xl="6"
+        sm="12"
+        xs="12"
+        padding={5}
+        style={{ backgroundColor: "#fff" }}
+      >
         <Typography
           variant="h2"
           align="center"
@@ -73,11 +81,31 @@ export default function Admin() {
                   onChange={handleChange}
                   aria-label="basic tabs example"
                 >
-                  <Tab sx={{color:"#84bfd1"}} label="Bruger" {...a11yProps(0)} />
-                  <Tab sx={{color:"#84bfd1"}} label="Bruger Saldo" {...a11yProps(1)} />
-                  <Tab sx={{color:"#84bfd1"}} label="Spil" {...a11yProps(2)} />
-                  <Tab sx={{color:"#84bfd1"}} label="Spil karakter" {...a11yProps(3)} />
-                  <Tab sx={{color:"#84bfd1"}} label="Spil historik" {...a11yProps(4)} />
+                  <Tab
+                    sx={{ color: "#84bfd1" }}
+                    label="Bruger"
+                    {...a11yProps(0)}
+                  />
+                  <Tab
+                    sx={{ color: "#84bfd1" }}
+                    label="Bruger Saldo"
+                    {...a11yProps(1)}
+                  />
+                  <Tab
+                    sx={{ color: "#84bfd1" }}
+                    label="Spil"
+                    {...a11yProps(2)}
+                  />
+                  <Tab
+                    sx={{ color: "#84bfd1" }}
+                    label="Spil karakter"
+                    {...a11yProps(3)}
+                  />
+                  <Tab
+                    sx={{ color: "#84bfd1" }}
+                    label="Spil historik"
+                    {...a11yProps(4)}
+                  />
                 </Tabs>
               </Box>
               <CustomTabPanel value={value} index={0}>
@@ -101,7 +129,7 @@ export default function Admin() {
           "Oh you sneaky person! Get out!"
         )}
       </Grid>
-      <Grid item md="3"></Grid>
+      <Grid item md="0" xl="3" sm="0"></Grid>
     </Grid>
   );
 }

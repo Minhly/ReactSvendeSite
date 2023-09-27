@@ -7,7 +7,7 @@ import SendIcon from "@mui/icons-material/Send";
 
 function Home() {
   return (
-    <Grid container sm="12" md="12">
+    <Grid container xs="12" md="12">
       <Grid item md="6" sm="12" marginTop={32}>
         <Typography
           variant="h3"
@@ -63,7 +63,7 @@ function Home() {
         </Box>
       </Grid>
       <Grid item md="6" sm="12" marginTop={5}>
-        <img src={SmexyIphones} alt="Phone" width={900} />
+          <img src={SmexyIphones} alt="Phone" width={"100%"}/>
       </Grid>
     </Grid>
   );

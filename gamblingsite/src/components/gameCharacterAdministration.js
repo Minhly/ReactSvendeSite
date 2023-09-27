@@ -26,9 +26,9 @@ import UserModal from "./userModal";
 import { useLoggedInStore } from "./zustandStore";
 import GameEditModal from "./gameEditModal";
 import GameCreateModal from "./gameCreateModal";
-import GameCreateCharacterModal from "./gameCreateCharacterModal";
 import GameEditCharacterModal from "./gameEditCharacterModal";
 import DeleteModal from "./deleteModal";
+import GameCreateCharacterModal from "./gameCreateCharacterModal";
 
 function createData(id, name, odds, gameId) {
   return {
@@ -89,7 +89,7 @@ function GameCharacterAdministration() {
                 <TableCell align="left">{row.odds}</TableCell>
                 <TableCell align="left">{row.gameId}</TableCell>
                 <TableCell align="left">
-                  <DeleteModal game={row} />
+                  <DeleteModal character={row} />
                 </TableCell>
                 <TableCell align="left">
                   <GameEditCharacterModal character={row} />

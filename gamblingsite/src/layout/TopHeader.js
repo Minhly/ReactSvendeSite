@@ -22,13 +22,13 @@ const TopHeader = () => {
     <AppBar style={{ background: "#5e90c1", width: "100%" }}>
       <Toolbar>
         <Grid container padding={4}>
-          <Grid item md="10">
+          <Grid item md="10" sm="12" xs="12">
               <Link to="/" style={{ textDecoration: "none", color: "#fff" }}>
               <img src={gambleonlogo} alt="gambleonLogo" width={200} />
               </Link>
             {!cookies.cookieConsent && <CookieConsent />}
           </Grid>
-          <Grid item md="2" align="right" marginTop={1}>
+          <Grid item md="2" sm="12" xs="12" align="right" marginTop={1}>
             {isLoggedIn ? (
               <>
                 <Link

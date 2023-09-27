@@ -20,7 +20,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../layout/register.css";
 import EditIcon from "@mui/icons-material/Edit";
-import { useLoggedInStore } from "../components/zustandStore";
+import { useLoggedInStore } from "./zustandStore";
 import Paper from "@mui/material/Paper";
 
 const style = {
@@ -112,42 +112,12 @@ export default function BettingHistoryModal(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style} component="form" onSubmit={handleSubmit} noValidate>
-          <Typography variant="h5">
+          <Typography variant="h4">
             {props.user.firstName} {props.user.lastName}
           </Typography>
           <Grid container md="12">
-            <Grid item md="8">
-              <TextField
-                margin="normal"
-                required
-                name="amount"
-                defaultValue={props.user.wallets[0].amount}
-                label="Saldo"
-                id="amount"
-                onChange={handleChange}
-                style={{ width: "100%" }}
-              />
-            </Grid>
-            <Grid item md="3">
-              <Button
-                type="submit"
-                fullWidth
-                startIcon={<EditIcon />}
-                variant="contained"
-                sx={{
-                  mt: 2,
-                  mb: 2,
-                  paddingTop: "10px",
-                  paddingBottom: "10px",
-                  marginLeft: "10px",
-                  backgroundColor: "#5e90c1",
-                }}
-              >
-                Gem Saldo
-              </Button>
-            </Grid>
             <Grid item md="12">
-              <Typography variant="h5" mt={2}>
+              <Typography variant="h6" mt={2}>
                 Saldo Historik
               </Typography>
               <TableContainer component={Paper}>
@@ -156,12 +126,16 @@ export default function BettingHistoryModal(props) {
                     <TableRow>
                       <TableCell align="left">Id</TableCell>
                       <TableCell align="left">Beløb</TableCell>
-                      <TableCell align="left">Dato</TableCell>
+                      <TableCell align="left">Spillet På</TableCell>
+                      <TableCell align="left">Spil Navn</TableCell>
+                      <TableCell align="left">Dato Spillet</TableCell>
+                      <TableCell align="left">Gevinst</TableCell>
+                      <TableCell align="left">Resultat</TableCell>
                       <TableCell align="left"></TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {props.user.wallets[0].transactions.map((row) => (
+                    {props.user.wallets[0].bettingHistories.map((row) => (
                       <TableRow
                         key={row.id}
                         sx={{
@@ -171,8 +145,16 @@ export default function BettingHistoryModal(props) {
                         <TableCell component="th" scope="row">
                           {row.id}
                         </TableCell>
-                        <TableCell align="left">{row.amount}</TableCell>
-                        <TableCell align="left">{row.actionTime}</TableCell>
+                        <TableCell align="left">{row.bettingAmount}</TableCell>
+                        <TableCell align="left">
+                          {row.bettingCharacterId}
+                        </TableCell>
+                        <TableCell align="left">
+                          {row.bettingGame.game.name}
+                        </TableCell>
+                        <TableCell align="left">{row.createdTime}</TableCell>
+                        <TableCell align="left">{row.bettingResult}</TableCell>
+                        <TableCell align="left">{row.outcome}</TableCell>
                         <TableCell align="left"></TableCell>
                       </TableRow>
                     ))}

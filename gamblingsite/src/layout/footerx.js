@@ -28,17 +28,17 @@ function Footer() {
         zIndex: "100",
       }}
     >
-      <Grid item md="4">
+      <Grid item md="4" xs="0">
         <Box textAlign="center" marginTop={2}>
           <Link to="https://danskespil.dk/">
             <img src={DkLogo} alt="DkLogo" width={"10%"} />
           </Link>
         </Box>
       </Grid>
-      <Grid item md="4">
+      <Grid item md="4" xs="6">
         <Newsletter />
       </Grid>
-      <Grid item md="4" marginTop={1}>
+      <Grid item md="4" marginTop={1} xs="6">
         <Box textAlign="center" marginTop={1}>
           <Typography
             variant="h6"

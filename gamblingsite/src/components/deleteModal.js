@@ -27,41 +27,9 @@ export default function DeleteModal(props) {
   const handleCalendarClose = () => console.log("Calendar closed");
   const handleCalendarOpen = () => console.log("Calendar opened");
   const bearerToken = useLoggedInStore((state) => state.bearerToken);
-  const [data, setData] = useState({
-    name: "",
-    desc: "",
-    gameTypeId: "",
-    gameImage: "",
-  });
-
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setData({
-      ...data,
-      [e.target.name]: value,
-    });
-  };
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    const gameData = {
-      id: props.game.id,
-      name:
-        data.name == null || data.name.length < 1 ? props.game.name : data.name,
-      desc:
-        data.description == null || data.description.length < 1
-          ? props.game.desc
-          : data.description,
-      gameTypeId:
-        data.gameTypeId == null || data.gameTypeId.length < 1
-          ? props.game.gameTypeId
-          : data.gameTypeId,
-      gameImage:
-        data.gameImage == null || data.gameImage.length < 1
-          ? props.game.gameImage
-          : data.gameImage,
-    };
 
     const config = {
       headers: {
@@ -71,9 +39,9 @@ export default function DeleteModal(props) {
     };
 
     axios
-      .put(
-        "https://deep-wealthy-roughy.ngrok-free.app/game/" + props.game.id,
-        gameData,
+      .delete(
+        "https://deep-wealthy-roughy.ngrok-free.app/Character/" +
+          props.character.id,
         config
       )
       .then((response) => {
@@ -101,11 +69,11 @@ export default function DeleteModal(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style} component="form" onSubmit={handleSubmit} noValidate>
-          <Typography variant="h3">{props.game.name}</Typography>
+          <Typography variant="h3">{props.character.name}</Typography>
           <Grid container md="12">
             <Grid item md="12">
               <Typography variant="h6">
-                Er du sikker på du vil slette dette spil?
+                Er du sikker på du vil slette dette spil karakter?
               </Typography>
             </Grid>
             <Grid item md="12">
@@ -123,7 +91,7 @@ export default function DeleteModal(props) {
                   backgroundColor: "#FF6961",
                 }}
               >
-                Slet spil
+                Slet spil karakter
               </Button>
             </Grid>
           </Grid>

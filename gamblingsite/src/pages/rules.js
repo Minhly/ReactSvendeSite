@@ -11,7 +11,6 @@ import {
 
     const DemoPaper = styled(Paper)(({ theme }) => ({
       width: "100%",
-      height: "100%",
       padding: theme.spacing(8),
       ...theme.typography.body2,
       textAlign: 'center',
@@ -19,8 +18,8 @@ import {
 
     return (
       <Grid container marginTop={22} marginBottom={20}>
-        <Grid item md="3"></Grid>
-        <Grid item md="6">
+        <Grid item md="0" xl="3" sm="0" xs="0"></Grid>
+        <Grid item md="12" xl="6" sm="10" xs="12">
           <Box textAlign="center" marginTop={4}>
 
             <DemoPaper square elevation={20}>
@@ -94,7 +93,7 @@ Spilleren er forpligtet til straks at informere Danske Licens Spil, såfremt en 
 Spilleren er forpligtet til straks at informere Danske Licens Spil, såfremt en eller flere af ovenstående krav ikke længere er opfyldt.</DemoPaper>
           </Box>
         </Grid>
-        <Grid item md="3"></Grid>
+        <Grid item md="0" xl="3" sm="0" xs="0"></Grid>
       </Grid>
     );
   }

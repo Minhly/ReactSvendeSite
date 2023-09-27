@@ -52,6 +52,7 @@ function GetBettingHistory() {
   const [users, SetUsers] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const bearerToken = useLoggedInStore((state) => state.bearerToken);
+  const [betHistories, setBettingHistory] = useState([])
 
   const config = {
     headers: {
@@ -60,7 +61,7 @@ function GetBettingHistory() {
     },
   };
 
-  const url = "https://deep-wealthy-roughy.ngrok-free.app/User/";
+  const url = "https://deep-wealthy-roughy.ngrok-free.app/User/GetUsersWithAllHistory";
   useEffect(() => {
     axios
       .get(url, config)
@@ -78,7 +79,6 @@ function GetBettingHistory() {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(filteredList);
   const filterBySearch = (event) => {
     const query = event.target.value;
     var updatedList = [...users];
@@ -137,12 +137,6 @@ function GetBettingHistory() {
                 align="left"
                 sx={{ fontWeight: "bold", color: "#5e90c1" }}
               >
-                Fødselsdag
-              </TableCell>
-              <TableCell
-                align="left"
-                sx={{ fontWeight: "bold", color: "#5e90c1" }}
-              >
                 Aktiv
               </TableCell>
               <TableCell
@@ -164,7 +158,6 @@ function GetBettingHistory() {
                 <TableCell align="left">{row.firstName}</TableCell>
                 <TableCell align="left">{row.lastName}</TableCell>
                 <TableCell align="left">{row.email}</TableCell>
-                <TableCell align="left">{row.dateOfBirth}</TableCell>
                 <TableCell align="left">{row.active.toString()}</TableCell>
                 <TableCell align="left">
                   <BettingHistoryModal user={row} />

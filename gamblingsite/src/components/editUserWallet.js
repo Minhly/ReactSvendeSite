@@ -22,8 +22,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../layout/register.css";
 import EditIcon from "@mui/icons-material/Edit";
-import UserWalletModal from "./userWalletModal";
 import { useLoggedInStore } from "../components/zustandStore";
+import UserWalletModal from "./userWalletModal";
 
 function createData(
   id,
@@ -70,7 +70,9 @@ function EditUserWallet() {
   useEffect(() => {
     axios
       .get(url, config)
-      .then((res) => {setFilteredList(res.data)})
+      .then((res) => {
+        setFilteredList(res.data);
+      })
       .catch((err) => console.log(err));
   }, []);
   const filterBySearch = (event) => {
@@ -97,12 +99,42 @@ function EditUserWallet() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Id</TableCell>
-              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Brugernavn</TableCell>
-              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Fornavn</TableCell>
-              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Efternavn</TableCell>
-              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Email</TableCell>
-              <TableCell align="left" sx={{fontWeight: "bold", color: "#5e90c1"}}>Saldo</TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Id
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Brugernavn
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Fornavn
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Efternavn
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Email
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", color: "#5e90c1" }}
+              >
+                Saldo
+              </TableCell>
               <TableCell align="left"></TableCell>
             </TableRow>
           </TableHead>
