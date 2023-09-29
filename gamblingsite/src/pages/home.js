@@ -63,7 +63,7 @@ function Home() {
         </Box>
       </Grid>
       <Grid item md="6" sm="12" marginTop={5}>
-          <img src={SmexyIphones} alt="Phone" width={"100%"}/>
+        <img src={SmexyIphones} alt="Phone" width={"100%"} />
       </Grid>
     </Grid>
   );

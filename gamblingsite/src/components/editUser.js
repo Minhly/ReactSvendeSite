@@ -77,7 +77,6 @@ function EditUser() {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(filteredList);
   const filterBySearch = (event) => {
     const query = event.target.value;
     var updatedList = [...users];

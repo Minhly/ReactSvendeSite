@@ -98,7 +98,7 @@ export default function BettingHistoryModal(props) {
         console.log(error.response);
       });
   }
-
+  
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

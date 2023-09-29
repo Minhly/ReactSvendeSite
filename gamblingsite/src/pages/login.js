@@ -62,11 +62,8 @@ function Login() {
         )
         .then((response) => {
           if (response.status == 200) {
-            console.log(response.status);
             setIsLoggedIn(true);
-            console.log("1")
             setBearerToken(response.data.token);
-            console.log("2")
             navigate("/pages/admin");
           } else if (response.status == 423) {
             navigate("/pages/login");
