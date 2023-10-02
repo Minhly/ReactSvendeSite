@@ -5,6 +5,7 @@ import {
   Typography,
   Box,
   FormControlLabel,
+  InputAdornment,
 } from "@mui/material";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { useEffect, useState } from "react";
@@ -13,6 +14,13 @@ import { Link, Navigate, Route, redirect, useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../layout/register.css";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import IconTextField from "../components/iconTextField";
+import PersonIcon from "@mui/icons-material/Person";
+import KeyIcon from "@mui/icons-material/Key";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 function Register() {
   const [date, setDate] = useState(new Date("01/01/1999"));
@@ -35,6 +43,7 @@ function Register() {
 
   const handleChange = (e) => {
     const value = e.target.value;
+    setIsDirty(true)
     setData({
       ...data,
       [e.target.name]: value,
@@ -64,13 +73,6 @@ function Register() {
       },
     };
 
-    /*
-      const url = "https://deep-wealthy-roughy.ngrok-free.app/user/getusers";
-      
-      axios.get(url, config)
-      .then(res=> console.log(res))
-      .catch(err=> console.log(err))
-        */
     try {
       axios
         .post(
@@ -85,7 +87,10 @@ function Register() {
           } else {
             navigate("/pages/login");
           }
-        }).catch(error => { console.log(error.response)});
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
     } catch (error) {
       console.log(error);
     }
@@ -109,11 +114,11 @@ function Register() {
           <Box
             component="form"
             onSubmit={handleSubmit}
-            noValidate
             sx={{ mt: 1 }}
           >
             <Grid item md="12">
-              <TextField
+              <IconTextField
+                sx={{ input: { color: "#5e90c1" } }}
                 margin="normal"
                 required
                 fullWidth
@@ -121,14 +126,16 @@ function Register() {
                 label="Brugernavn"
                 onChange={handleChange}
                 id="username"
-                error={data.username.length === 0}
-                helperText={data.username.length === 0 ? "Field is empty" : " "}
+                error={isDirty ? data.username.length === 0 : ""}
+                helperText={data.username.length === 0 ? "Field is Empty" : ""}
                 autoFocus
+                iconStart={<PersonIcon sx={{ color: "#5e90c1" }} />}
               />
             </Grid>
             <Grid container md="12">
               <Grid item md="6">
-                <TextField
+                <IconTextField
+                  sx={{ input: { color: "#5e90c1" } }}
                   margin="normal"
                   required
                   id="firstname"
@@ -136,15 +143,17 @@ function Register() {
                   name="firstname"
                   fullWidth
                   onChange={handleChange}
-                  error={data.firstname.length === 0}
+                  error={isDirty ? data.firstname.length === 0 : ""}
                   helperText={
                     data.firstname.length === 0 ? "Field is empty" : ""
                   }
+                  iconStart={<PersonIcon sx={{ color: "#5e90c1" }} />}
                 />
               </Grid>
 
               <Grid item md="6">
-                <TextField
+                <IconTextField
+                  sx={{ input: { color: "#5e90c1" } }}
                   margin="normal"
                   required
                   name="lastname"
@@ -152,16 +161,18 @@ function Register() {
                   onChange={handleChange}
                   id="lastname"
                   style={{ width: "95%", marginLeft: "10px" }}
-                  error={data.lastname.length === 0}
+                  error={isDirty ? data.lastname.length === 0 : ""}
                   helperText={
                     data.lastname.length === 0 ? "Field is empty" : ""
                   }
+                  iconStart={<PersonIcon sx={{ color: "#5e90c1" }} />}
                 />
               </Grid>
             </Grid>
 
             <Grid item md="12">
-              <TextField
+              <IconTextField
+                sx={{ input: { color: "#5e90c1" } }}
                 margin="normal"
                 required
                 fullWidth
@@ -170,13 +181,15 @@ function Register() {
                 type="password"
                 onChange={handleChange}
                 id="password"
-                error={data.password.length === 0}
+                error={isDirty ? data.password.length === 0 : ""}
                 helperText={data.password.length === 0 ? "Field is empty" : ""}
+                iconStart={<KeyIcon sx={{ color: "#5e90c1" }} />}
               />
             </Grid>
             <Grid container md="12">
               <Grid item md="6">
-                <TextField
+                <IconTextField
+                  sx={{ input: { color: "#5e90c1" } }}
                   margin="normal"
                   required
                   fullWidth
@@ -184,25 +197,29 @@ function Register() {
                   label="Email"
                   onChange={handleChange}
                   id="email"
-                  error={data.email.length === 0}
+                  error={isDirty ? data.email.length === 0 : ""}
                   helperText={data.email.length === 0 ? "Field is empty" : ""}
+                  iconStart={<AlternateEmailIcon sx={{ color: "#5e90c1" }} />}
                 />
               </Grid>
 
               <Grid item md="6">
-                <TextField
+                <IconTextField
+                  sx={{ input: { color: "#5e90c1" } }}
                   margin="normal"
                   required
                   fullWidth
+                  type="number"
                   name="phonenumber"
                   label="Telefonnummer"
                   onChange={handleChange}
                   id="phonenumber"
                   style={{ width: "95%", marginLeft: "10px" }}
-                  error={data.phonenumber.length === 0}
+                  error={isDirty ? data.phonenumber.length === 0 : ""}
                   helperText={
                     data.phonenumber.length === 0 ? "Field is empty" : ""
                   }
+                  iconStart={<LocalPhoneIcon sx={{ color: "#5e90c1" }} />}
                 />
               </Grid>
             </Grid>
@@ -225,18 +242,21 @@ function Register() {
                */}
             <Grid container md="12">
               <Grid item md="6">
-                <TextField
+                <IconTextField
+                  sx={{ input: { color: "#5e90c1" } }}
                   margin="normal"
                   required
                   name="postalcode"
                   label="Postnummer"
                   fullWidth
+                  type="number"
                   onChange={handleChange}
                   id="postalcode"
-                  error={data.postalcode.length === 0}
+                  error={isDirty ? data.postalcode.length === 0 : ""}
                   helperText={
                     data.postalcode.length === 0 ? "Field is empty" : ""
                   }
+                  iconStart={<LocalShippingIcon sx={{ color: "#5e90c1" }} />}
                 />
               </Grid>
               <Grid item md="6">
@@ -254,7 +274,8 @@ function Register() {
               </Grid>
             </Grid>
             <Grid item md="12">
-              <TextField
+              <IconTextField
+                sx={{ input: { color: "#5e90c1" } }}
                 margin="normal"
                 required
                 fullWidth
@@ -262,8 +283,9 @@ function Register() {
                 label="Adresse"
                 onChange={handleChange}
                 id="address2"
-                error={data.address2.length === 0}
+                error={isDirty ? data.address2.length === 0 : ""}
                 helperText={data.address2.length === 0 ? "Field is empty" : ""}
+                iconStart={<LocationOnIcon sx={{ color: "#5e90c1" }} />}
               />
             </Grid>
             <Grid item md="12">
@@ -280,7 +302,7 @@ function Register() {
                   backgroundColor: "#5e90c1",
                 }}
               >
-                Sign Up
+                Registrere bruger
               </Button>
             </Grid>
           </Box>

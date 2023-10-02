@@ -6,7 +6,7 @@ function Newsletter() {
     <Box textAlign="center" marginTop={2.5}>
       <TextField
         color="secondary"
-        label="Sign up for our newsletter!"
+        label="Tilmeld vores nyhedsbrev!"
         style={{ borderColor: "#5e90c1", backgroundColor: "#fff", color: "white", borderRadius: "5px"}}
         InputProps={{
           endAdornment: (

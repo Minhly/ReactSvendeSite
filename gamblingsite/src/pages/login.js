@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, Navigate, Route, redirect, useNavigate } from "react-router-dom";
 import { useLoggedInStore } from '../components/zustandStore';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import IconTextField from "../components/iconTextField";
 
 function Login() {
   const setIsLoggedIn = useLoggedInStore((state) => state.setIsLoggedIn)
@@ -44,14 +46,6 @@ function Login() {
         "ngrok-skip-browser-warning": 1,
       },
     };
-
-    /*
-    const url = "https://deep-wealthy-roughy.ngrok-free.app/user/getusers";
-    
-    axios.get(url, config)
-    .then(res=> console.log(res))
-    .catch(err=> console.log(err))
-      */
 
     try {
       axios
@@ -104,10 +98,9 @@ function Login() {
             <Box
               component="form"
               onSubmit={handleSubmit}
-              noValidate
               sx={{ mt: 1 }}
             >
-              <TextField
+              <IconTextField
                 margin="normal"
                 required
                 fullWidth
@@ -116,8 +109,9 @@ function Login() {
                 name="email"
                 onChange={handleChange}
                 autoFocus
+                iconStart={<AlternateEmailIcon/>}
               />
-              <TextField
+              <IconTextField
                 margin="normal"
                 required
                 fullWidth
@@ -126,6 +120,7 @@ function Login() {
                 type="password"
                 onChange={handleChange}
                 id="password"
+                iconStart={<VpnKeyIcon/>}
               />
               <Button
                 type="submit"
@@ -140,7 +135,7 @@ function Login() {
                 <Grid item></Grid>
                 <Grid item>
                   <Link to="/pages/register" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                    {"Ikke en bruger endnu? Registrere dig her"}
                   </Link>
                 </Grid>
               </Grid>

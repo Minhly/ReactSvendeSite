@@ -57,7 +57,7 @@ function Home() {
                 backgroundColor: "#000",
               }}
             >
-              Sign up
+              Registrere dig her
             </Button>
           </Link>
         </Box>

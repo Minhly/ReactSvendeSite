@@ -35,10 +35,10 @@ const TopHeader = () => {
                   to="/pages/admin"
                   style={{ textDecoration: "none", color: "#fff" }}
                 >
-                  Welcome Admin
+                  Velkommen Admin
                 </Link>
                 <br></br>
-                <Button style={{ textDecoration: "none", color: "#fff" }} onClick={logOut}>Log Out</Button>
+                <Button style={{ textDecoration: "none", color: "#fff" }} onClick={logOut}>Log ud</Button>
               </>
             ) : (
               <Link to="/pages/login">
